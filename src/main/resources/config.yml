@@ -1,0 +1,23 @@
+# vcmc-openinv 設定ファイル
+
+# プレイヤーごとに保存する死亡スナップショットの最大数
+max-death-snapshots: 10
+
+# メッセージ設定（&カラーコード対応）
+messages:
+  no-permission: '&cこのコマンドを実行する権限がありません。'
+  player-not-found: '&cプレイヤー &e%player% &cが見つかりません。'
+  no-data: '&c&e%player% &cのインベントリデータが存在しません。プラグイン導入後にオンラインになったことがない可能性があります。'
+  opening-inv: '&a&e%player% &aのインベントリを開きます。'
+  opening-ender: '&a&e%player% &aのエンダーチェストを開きます。'
+  offline-notice: '&7（オフラインプレイヤー - 変更はログイン時または次回保存時に反映されます）'
+  inv-saved: '&a&e%player% &aのインベントリを更新しました。'
+  no-deaths: '&c&e%player% &cの死亡スナップショットが存在しません。'
+  death-list-header: '&6--- &e%player% &6の死亡スナップショット ---'
+  death-list-entry: '&7[&e%index%&7] &f%time% &7(&e%items% &7アイテム)'
+  restore-prompt: '&c以下のスナップショットで復元します: &e%time%'
+  restore-confirm-hint: '&c確認するには: &6/restoreinv %player% %index% confirm'
+  restore-success: '&a&e%player% &aのインベントリを &e%time% &aのスナップショットで復元しました。'
+  restore-online-notice: '&e%player% &aは現在オンラインのため、即座に反映されます。'
+  restore-offline-notice: '&e%player% &aはオフラインです。次回ログイン時に反映されます。'
+  invalid-index: '&cインデックスが無効です。&6/restoreinv %player% &cでリストを確認してください。'
