@@ -12,6 +12,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
@@ -118,6 +119,19 @@ public class PlayerListener implements Listener {
         int slot = event.getRawSlot();
         if (slot >= 0 && slot < InvViewHolder.GUI_SIZE && InvViewHolder.GUI_IS_UNUSED[slot]) {
             event.setCancelled(true);
+        }
+    }
+
+    // ─── GUI ドラッグ時：未使用スロットへのドラッグをキャンセル ──
+
+    @EventHandler
+    public void onInventoryDrag(InventoryDragEvent event) {
+        if (!(event.getInventory().getHolder() instanceof InvViewHolder)) return;
+        for (int slot : event.getRawSlots()) {
+            if (slot >= 0 && slot < InvViewHolder.GUI_SIZE && InvViewHolder.GUI_IS_UNUSED[slot]) {
+                event.setCancelled(true);
+                return;
+            }
         }
     }
 

@@ -6,7 +6,8 @@ import org.bukkit.inventory.ItemStack;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
@@ -18,8 +19,9 @@ public class DeathStorage {
     private final OpenInvPlugin plugin;
     private final File deathDir;
 
-    private static final SimpleDateFormat DATE_FORMAT =
-            new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
+    // DateTimeFormatter はスレッドセーフ（SimpleDateFormat は非スレッドセーフなので使用不可）
+    private static final DateTimeFormatter DATE_FORMAT =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");
 
     public DeathStorage(OpenInvPlugin plugin) {
         this.plugin = plugin;
@@ -35,7 +37,7 @@ public class DeathStorage {
         File playerDir = new File(deathDir, uuid.toString());
         playerDir.mkdirs();
 
-        String timestamp = DATE_FORMAT.format(new Date());
+        String timestamp = DATE_FORMAT.format(LocalDateTime.now());
         File file = new File(playerDir, timestamp + ".yml");
 
         YamlConfiguration cfg = new YamlConfiguration();
