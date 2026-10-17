@@ -1,0 +1,43 @@
+name: vcmc-openinv
+version: 1.0.0
+main: net.vcmc.openinv.OpenInvPlugin
+api-version: '26.2'
+folia-supported: true
+description: プレイヤーインベントリ・エンダーチェスト閲覧/編集(オフライン対応) + 死亡前復元
+authors:
+  - vcmc
+
+commands:
+  openinv:
+    description: 'インベントリ閲覧/編集'
+    usage: /openinv <player>
+    permission: openinv.openinv
+    aliases: [oi]
+  openender:
+    description: 'エンダーチェスト閲覧/編集'
+    usage: /openender <player>
+    permission: openinv.openender
+    aliases: [oe]
+  restoreinv:
+    description: '死亡前インベントリ復元'
+    usage: /restoreinv <player> [index] [confirm]
+    permission: openinv.restoreinv
+    aliases: [ri]
+
+permissions:
+  openinv.openinv:
+    description: 'openinvコマンド使用権限'
+    default: op
+  openinv.openender:
+    description: 'openenderコマンド使用権限'
+    default: op
+  openinv.restoreinv:
+    description: 'restoreinvコマンド使用権限'
+    default: op
+  openinv.*:
+    description: 'すべてのOpenInv権限'
+    default: op
+    children:
+      openinv.openinv: true
+      openinv.openender: true
+      openinv.restoreinv: true
